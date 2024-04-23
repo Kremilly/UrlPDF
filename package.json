@@ -4,8 +4,8 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
-    "build": "npx puppeteer install chrome-headless-shell",
-    "vercel-build": "npx puppeteer install chrome-headless-shell"
+    "build": "mv bin/libnss3.so /tmp/chromium/libnss3.so",
+    "vercel-build": "mv bin/libnss3.so /tmp/chromium/libnss3.so"
   },
   "license": "MIT",
   "dependencies": {
