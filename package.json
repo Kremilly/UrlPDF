@@ -4,7 +4,8 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
-    "vercel-build": "npx puppeteer browsers install chromium"
+    "build": "puppeteer install chromium@1083080",
+    "vercel-build": "puppeteer install chromium@1083080"
   },
   "license": "MIT",
   "dependencies": {
