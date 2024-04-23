@@ -4,7 +4,7 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
-    "vercel-build": "npx puppeteer browsers install chrome && apt install -y libnss3"
+    "vercel-build": "npx puppeteer browsers install chromium"
   },
   "license": "MIT",
   "dependencies": {
