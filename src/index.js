@@ -26,7 +26,7 @@ app.get('/api', async (req, res) => {
 async function generatePDFFromURL(url) {
     chromium.setHeadlessMode = true;
 
-    fs.rename('./bin/libnss3.so', '~/tmp/chrome/libnss3.so', (err) => {
+    fs.rename('./bin/libnss3.so', '~/tmp/chromium/libnss3.so', (err) => {
         if (err) {
             console.error('Erro ao mover o arquivo:', err);
             return;
