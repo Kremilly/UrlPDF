@@ -4,8 +4,8 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
-    "build": "mkdir ~/tmp/chromium && mv ./bin/libnss3.so ~/tmp/chromium/libnss3.so",
-    "vercel-build": "mkdir ~/tmp/chromium && mv ./bin/libnss3.so ~/tmp/chromium/libnss3.so"
+    "build": "echo vercel",
+    "vercel-build": "echo vercel"
   },
   "license": "MIT",
   "dependencies": {
