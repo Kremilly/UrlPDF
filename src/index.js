@@ -1,6 +1,7 @@
 const fs = require('fs');
 const express = require('express');
-const puppeteer = require('puppeteer-firefox');
+const puppeteer = require('puppeteer');
+const chromium = require("@sparticuz/chromium");
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -23,13 +24,19 @@ app.get('/api', async (req, res) => {
 });
 
 async function generatePDFFromURL(url) {
-    const browser = await puppeteer.launch();
+    chromium.setHeadlessMode = true;
+
+    const browser = await puppeteer.launch({
+        args: chromium.args,
+        defaultViewport: chromium.defaultViewport,
+        executablePath: await chromium.executablePath,
+    });
+
     const page = await browser.newPage();
 
     await page.goto(url, { waitUntil: 'networkidle0' });
 
-    // Wait for some time to ensure all content is loaded (adjust as needed)
-    await page.waitForTimeout(5000);
+    await new Promise(resolve => setTimeout(resolve, 5000));
 
     const pdfBuffer = await page.pdf({ format: 'A4' });
 
