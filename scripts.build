@@ -1,0 +1,5 @@
+{
+  "scripts": {
+    "build": "npx puppeteer browsers install chrome"
+  }
+}
