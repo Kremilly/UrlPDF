@@ -2,6 +2,10 @@
 
 This API allows you to generate PDF files from web pages using Express and Puppeteer.
 
+> [!error]
+>
+> This API is not deployed, the request of api returns a ***500 http error***
+
 ## How to Use
 
 ### Requirements
