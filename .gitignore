@@ -144,3 +144,4 @@ dist
 
 # Ignore all PDF Files
 *.pdf
+.vercel
