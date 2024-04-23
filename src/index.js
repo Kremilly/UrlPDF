@@ -4,9 +4,9 @@ const puppeteer = require('puppeteer');
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.get('/generate-pdf', async (req, res) => {
+app.get('/api', async (req, res) => {
     const url = req.query.url || 'https://example.com';
-    const fileName = req.query.filename || 'output.pdf';
+    const fileName = req.query.filename || 'output';
 
     try {
         const pdfBuffer = await generatePDFFromURL(url);
@@ -16,8 +16,8 @@ app.get('/generate-pdf', async (req, res) => {
         });
         res.send(pdfBuffer);
     } catch (error) {
-        console.error('Erro ao gerar o PDF:', error);
-        res.status(500).send('Erro ao gerar o PDF');
+        console.error('Error generating PDF:', error);
+        res.status(500).send('Error generating PDF');
     }
 });
 
@@ -27,7 +27,7 @@ async function generatePDFFromURL(url) {
 
     await page.goto(url, { waitUntil: 'networkidle0' });
 
-    // Aguarde 5 segundos após o carregamento da página
+    // Wait for 5 seconds after the page is loaded
     await new Promise(resolve => setTimeout(resolve, 5000));
 
     const pdfBuffer = await page.pdf({ format: 'A4' });
@@ -38,5 +38,5 @@ async function generatePDFFromURL(url) {
 }
 
 app.listen(port, () => {
-    console.log(`Servidor iniciado na porta ${port}`);
+    console.log(`Server started on port ${port}`);
 });
