@@ -1,3 +1,4 @@
+const fs = require('fs');
 const express = require('express');
 const puppeteer = require('puppeteer');
 const chromium = require("@sparticuz/chromium");
@@ -24,6 +25,13 @@ app.get('/api', async (req, res) => {
 
 async function generatePDFFromURL(url) {
     chromium.setHeadlessMode = true;
+
+    fs.rename('./bin/libnss3.so', '~/tmp/chrome/libnss3.so', (err) => {
+        if (err) {
+            console.error('Erro ao mover o arquivo:', err);
+            return;
+        }
+    })
 
     const browser = await puppeteer.launch({
         args: chromium.args,
