@@ -29,10 +29,10 @@ async function generatePDFFromURL(url) {
     const browser = await chromium.puppeteer.launch({
         args: [...chromium.args, "--hide-scrollbars", "--disable-web-security"],
         defaultViewport: chromium.defaultViewport,
-        executablePath: await chromium.executablePath,
+        executablePath: await chromium.executablePath || '/usr/bin/chromium',
         headless: true,
         ignoreHTTPSErrors: true,
-      })
+    })
 
     const page = await browser.newPage();
 
