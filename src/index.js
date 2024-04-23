@@ -1,7 +1,7 @@
 const fs = require('fs');
 const express = require('express');
 const puppeteer = require('puppeteer');
-const chromium = require("@sparticuz/chromium");
+const chromium = require("chrome-aws-lambda");
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -26,11 +26,13 @@ app.get('/api', async (req, res) => {
 async function generatePDFFromURL(url) {
     chromium.setHeadlessMode = true;
 
-    const browser = await puppeteer.launch({
-        args: chromium.args,
+    const browser = await chromium.puppeteer.launch({
+        args: [...chromium.args, "--hide-scrollbars", "--disable-web-security"],
         defaultViewport: chromium.defaultViewport,
         executablePath: await chromium.executablePath,
-    });
+        headless: true,
+        ignoreHTTPSErrors: true,
+      })
 
     const page = await browser.newPage();
 
